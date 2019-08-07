@@ -2,12 +2,12 @@
 
 namespace netcore_admin.Controllers
 {
-    public class TestController : Controller
+  public class TestController : Controller
+  {
+    [HttpGet("api/users")]
+    public IActionResult Index()
     {
-        [HttpGet("api/users")]
-        public IActionResult Index()
-        {
-            return Ok(new { name = "Leo" });
-        }
+      return Ok(new { name = "Leo" });
     }
+  }
 }
