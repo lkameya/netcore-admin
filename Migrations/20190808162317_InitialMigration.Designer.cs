@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using netcore_admin.Data;
 
-namespace netcore_admin.Data.Migrations
+namespace netcore_admin.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190808155506_AddPosts")]
-    partial class AddPosts
+    [Migration("20190808162317_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -186,8 +186,9 @@ namespace netcore_admin.Data.Migrations
 
             modelBuilder.Entity("netcore_admin.Domain.Post", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name");
 
