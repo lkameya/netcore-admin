@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using netcore_admin.Contracts;
+using netcore_admin.Contracts.V1;
 using netcore_admin.Domain;
 
-namespace netcore_admin.Controllers
+namespace netcore_admin.Controllers.V1
 {
     public class PostsController : Controller
     {

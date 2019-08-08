@@ -1,4 +1,4 @@
-﻿namespace netcore_admin.Contracts
+﻿namespace netcore_admin.Contracts.V1
 {
     public static class ApiRoutes
     {
