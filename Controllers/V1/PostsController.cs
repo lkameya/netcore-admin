@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using netcore_admin.Contracts.V1;
 using netcore_admin.Contracts.V1.Requests;
@@ -9,6 +11,7 @@ using netcore_admin.Services;
 
 namespace netcore_admin.Controllers.V1
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class PostsController : Controller
     {
         private IPostService _postService;

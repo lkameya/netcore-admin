@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using netcore_admin.Options;
+using netcore_admin.Services;
 using System.Collections.Generic;
 using System.Text;
 
@@ -17,6 +18,8 @@ namespace netcore_admin.Installers
             configuration.Bind(nameof(jwtSettings), jwtSettings);
 
             services.AddSingleton(jwtSettings);
+
+            services.AddScoped<IIdentityService, IdentityService>();
 
             services.AddAuthentication(x =>
             {
