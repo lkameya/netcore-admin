@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using netcore_admin.Domain;
 
 namespace netcore_admin.Data
 {
@@ -9,5 +10,7 @@ namespace netcore_admin.Data
             : base(options)
         {
         }
+
+        public DbSet<Post> Posts { get; set; }
     }
 }

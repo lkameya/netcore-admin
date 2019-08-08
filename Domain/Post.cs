@@ -1,10 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace netcore_admin.Domain
 {
     public class Post
     {
-        public Guid Id { get; set; }
+        [Key]
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

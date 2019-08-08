@@ -4,6 +4,6 @@ namespace netcore_admin.Contracts.V1.Response
 {
     public class CreatePostResponse
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
     }
 }

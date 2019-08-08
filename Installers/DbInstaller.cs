@@ -17,7 +17,7 @@ namespace netcore_admin.Installers
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddSingleton<IPostService, PostService>();
+            services.AddScoped<IPostService, PostService>();
         }
     }
 }
