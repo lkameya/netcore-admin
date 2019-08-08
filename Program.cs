@@ -1,11 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using netcore_admin.Data;
+using System.Threading.Tasks;
 
 namespace netcore_admin
 {
@@ -13,6 +11,17 @@ namespace netcore_admin
     {
         public static void Main(string[] args)
         {
+            //var host = CreateHostBuilder(args).Build();
+
+            //// It is gonna run migration on start
+            //using(var serviceScope = host.Services.CreateScope())
+            //{
+            //    var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+            //    await dbContext.Database.MigrateAsync();
+            //}
+
+            //await host.RunAsync();
             CreateHostBuilder(args).Build().Run();
         }
 

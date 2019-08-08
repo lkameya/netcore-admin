@@ -10,7 +10,7 @@ using netcore_admin.Data;
 namespace netcore_admin.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190808162317_InitialMigration")]
+    [Migration("20190808200447_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -192,7 +192,11 @@ namespace netcore_admin.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
@@ -246,6 +250,13 @@ namespace netcore_admin.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("netcore_admin.Domain.Post", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

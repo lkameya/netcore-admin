@@ -12,5 +12,6 @@ namespace netcore_admin.Services
         public Task<bool> CreatePostAsync(Post post);
         public Task<bool> UpdatePostAsync(Post post);
         public Task<bool> DeletePostAsync(int postId);
+        Task<bool> UserOwnsPostAsync(int postId, string userId);
     }
 }

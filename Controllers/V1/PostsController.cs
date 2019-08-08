@@ -7,6 +7,7 @@ using netcore_admin.Contracts.V1;
 using netcore_admin.Contracts.V1.Requests;
 using netcore_admin.Contracts.V1.Response;
 using netcore_admin.Domain;
+using netcore_admin.Extensions;
 using netcore_admin.Services;
 
 namespace netcore_admin.Controllers.V1
@@ -40,7 +41,11 @@ namespace netcore_admin.Controllers.V1
         [HttpPost(ApiRoutes.Posts.Create)]
         public async Task<IActionResult> Create([FromBody] CreatePostRequest postRequest)
         {
-            var post = new Post { Name = postRequest.Name };
+            var post = new Post
+            {
+                Name = postRequest.Name,
+                UserId = HttpContext.GetUserId()
+            };
 
             await _postService.CreatePostAsync(post);
 
@@ -55,11 +60,13 @@ namespace netcore_admin.Controllers.V1
         [HttpPut(ApiRoutes.Posts.Update)]
         public async Task<IActionResult> Update([FromRoute]int postId, [FromBody] UpdatePostRequest request)
         {
-            var post = new Post
-            {
-                Id = postId,
-                Name = request.Name
-            };
+            var userOwnsPost = await _postService.UserOwnsPostAsync(postId, HttpContext.GetUserId());
+
+            if (!userOwnsPost)
+                return BadRequest(new { Error = "You do not own this post" });
+
+            var post = await _postService.GetPostByIdAsync(postId);
+            post.Name = request.Name;
 
             var updated = await _postService.UpdatePostAsync(post);
 
@@ -72,6 +79,11 @@ namespace netcore_admin.Controllers.V1
         [HttpDelete(ApiRoutes.Posts.Delete)]
         public async Task<IActionResult> Delete([FromRoute]int postId)
         {
+            var userOwnsPost = await _postService.UserOwnsPostAsync(postId, HttpContext.GetUserId());
+
+            if (!userOwnsPost)
+                return BadRequest(new { Error = "You do not own this post" });
+
             var deleted = await _postService.DeletePostAsync(postId);
 
             if (deleted)
