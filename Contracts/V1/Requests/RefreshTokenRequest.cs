@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace netcore_admin.Domain
+namespace netcore_admin.Contracts.V1.Requests
 {
-    public class AuthenticationResult
+    public class RefreshTokenRequest
     {
         public string Token { get; set; }
         public string RefreshToken { get; set; }
-        public bool Success { get; set; }
-        public IEnumerable<string> Errors { get; set; }
     }
 }
