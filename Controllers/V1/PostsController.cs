@@ -47,7 +47,7 @@ namespace netcore_admin.Controllers.V1
             var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
             var locationUri = baseUrl + "/" + ApiRoutes.Posts.Get.Replace("{postId}", post.Id.ToString());
 
-            var response = new CreatePostResponse { Id = post.Id };
+            var response = new CreatePostResponse { Id = post.Id, Name = post.Name };
 
             return Created(locationUri, response);
         }

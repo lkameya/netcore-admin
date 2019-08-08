@@ -49,11 +49,41 @@ namespace netcore_admin.Services
                 };
             }
 
+            return GenerateAuthenticationResultForUser(newUser);
+        }
+
+        public async Task<AuthenticationResult> LoginAsync(string email, string password)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user == null)
+            {
+                return new AuthenticationResult
+                {
+                    Errors = new[] { "User does not exist" }
+                };
+            }
+
+            var userHasValidPassword = await _userManager.CheckPasswordAsync(user, password);
+
+            if (!userHasValidPassword)
+            {
+                return new AuthenticationResult
+                {
+                    Errors = new[] { "User/Password combination does not match" }
+                };
+            }
+
+            return GenerateAuthenticationResultForUser(user);
+        }
+
+        private AuthenticationResult GenerateAuthenticationResultForUser(IdentityUser newUser)
+        {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new []
+                Subject = new ClaimsIdentity(new[]
                 {
                     new Claim(JwtRegisteredClaimNames.Sub, newUser.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
@@ -72,5 +102,8 @@ namespace netcore_admin.Services
                 Token = tokenHandler.WriteToken(token)
             };
         }
+
+
+
     }
 }
