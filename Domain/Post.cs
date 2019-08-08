@@ -1,7 +1,10 @@
-﻿namespace netcore_admin.Domain
+﻿using System;
+
+namespace netcore_admin.Domain
 {
     public class Post
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
     }
 }

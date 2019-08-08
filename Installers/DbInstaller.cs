@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using netcore_admin.Data;
+using netcore_admin.Services;
 
 namespace netcore_admin.Installers
 {
@@ -15,6 +16,8 @@ namespace netcore_admin.Installers
                 configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddSingleton<IPostService, PostService>();
         }
     }
 }
