@@ -21,6 +21,7 @@ namespace netcore_admin.Services
                 });
             }
         }
+
         public Post GetPostById(Guid postId)
         {
             return _posts.SingleOrDefault(x => x.Id == postId);
@@ -42,6 +43,17 @@ namespace netcore_admin.Services
             _posts[index] = postToUpdate;
 
             return true;
+        }
+
+        public bool DeletePost(Guid postId)
+        {
+            var postToRemove = GetPostById(postId);
+            var deleted = _posts.Remove(postToRemove);
+
+            if (deleted)
+                return true;
+
+            return false;
         }
     }
 }
