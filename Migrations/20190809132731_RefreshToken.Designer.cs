@@ -10,8 +10,8 @@ using netcore_admin.Data;
 namespace netcore_admin.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190808200447_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20190809132731_RefreshToken")]
+    partial class RefreshToken
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -201,6 +201,29 @@ namespace netcore_admin.Migrations
                     b.ToTable("Posts");
                 });
 
+            modelBuilder.Entity("netcore_admin.Domain.RefreshToken", b =>
+                {
+                    b.Property<string>("Token");
+
+                    b.Property<DateTime>("CreationDate");
+
+                    b.Property<DateTime>("ExpirationDate");
+
+                    b.Property<bool>("Invalidated");
+
+                    b.Property<string>("JwtId");
+
+                    b.Property<bool>("Used");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Token");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RefreshTokens");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -253,6 +276,13 @@ namespace netcore_admin.Migrations
                 });
 
             modelBuilder.Entity("netcore_admin.Domain.Post", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("netcore_admin.Domain.RefreshToken", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
