@@ -188,7 +188,6 @@ namespace AdminAPI.Services
 
             var refreshToken = new RefreshToken
             {
-                Token = token.Id,
                 JwtId = token.Id,
                 UserId = user.Id,
                 CreationDate = DateTime.UtcNow,

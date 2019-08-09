@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AdminAPI.Migrations
 {
-    public partial class RefreshToken : Migration
+    public partial class Teste : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
