@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29123.89
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "netcore-admin", "netcore-admin.csproj", "{E036816A-5786-471F-AA32-D4D91E68916F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminAPI", "Admin.API\AdminAPI.csproj", "{E036816A-5786-471F-AA32-D4D91E68916F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin.IntegrationTests", "Admin.IntegrationTests\Admin.IntegrationTests.csproj", "{D103499B-FC93-4D64-9A52-B810D8E21A39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{E036816A-5786-471F-AA32-D4D91E68916F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E036816A-5786-471F-AA32-D4D91E68916F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E036816A-5786-471F-AA32-D4D91E68916F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D103499B-FC93-4D64-9A52-B810D8E21A39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D103499B-FC93-4D64-9A52-B810D8E21A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D103499B-FC93-4D64-9A52-B810D8E21A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D103499B-FC93-4D64-9A52-B810D8E21A39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
