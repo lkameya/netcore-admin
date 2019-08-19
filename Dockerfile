@@ -13,7 +13,7 @@ RUN curl -SL --output aspnetcore.tar.gz https://dotnetcli.blob.core.windows.net/
 WORKDIR /app
 
 # Copiar csproj e restaurar dependencias
-COPY *.csproj ./
+COPY Admin.API/*.csproj ./
 RUN dotnet restore
 
 # Build da aplicacao
@@ -23,4 +23,4 @@ RUN dotnet publish -c Release -o out
 # Build da imagem
 WORKDIR /app
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "Admin.API/Admin.API.dll"]
+ENTRYPOINT ["dotnet", "Admin.API.dll"]
